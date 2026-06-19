@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Available Books</title>
+
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+
+    <style>
+        body {
+            background: #f4f6fb;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        .page-header {
+            background: linear-gradient(135deg, #4f46e5, #2563eb);
+            color: white;
+            padding: 35px;
+            border-radius: 20px;
+            margin-bottom: 30px;
+        }
+
+        .book-card {
+            border: none;
+            border-radius: 18px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+            transition: 0.3s;
+        }
+
+        .book-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .badge-available {
+            background: #16a34a;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container mt-4">
+
+    <div class="page-header">
+        <h2>Available Books</h2>
+        <p>Explore books available in the library</p>
+        <a th:href="@{/student/dashboard}" class="btn btn-light">Back to Dashboard</a>
+    </div>
+
+    <div class="row">
+
+        <div class="col-md-4 mb-4" th:each="book : ${books}">
+            <div class="card book-card p-3">
+
+                <h4 th:text="${book.title}">Book Title</h4>
+
+                <p class="mb-1">
+                    <strong>Author:</strong>
+                    <span th:text="${book.author}">Author</span>
+                </p>
+
+                <p class="mb-1">
+                    <strong>Category:</strong>
+                    <span th:text="${book.category}">Category</span>
+                </p>
+
+                <p class="mb-1">
+                    <strong>ISBN:</strong>
+                    <span th:text="${book.isbn}">ISBN</span>
+                </p>
+
+                <p class="mt-2">
+                    <span class="badge badge-available"
+                          th:text="'Available Copies: ' + ${book.availableCopies}">
+                        Available Copies
+                    </span>
+                </p>
+
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>
